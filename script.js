@@ -53,8 +53,38 @@ const locations = [
     {
         name: "freeCodeCamp",
         "button text": ["Study 10 knowledge (10 bits)", "Study tool (30 bits)", "Go to your computer"],
-        "button functions": [studyKnowledge, studyTools, gotoComputer],
+        "button functions": [studyKnowledge, studyTools, goComputer],
         text: "You go to your computer."
+    },
+
+    {
+        name: "meetup",
+        "button text": ["Complete a mock test", "Complete a mock interview", "Go to your computer"],
+        "button functions": [mockTest, mockInterview, goComputer],
+        text: "You go to a coding meetup. You have options for practicing skills."
+    },
+    {
+        name: "interview",
+        "button text": ["Answer coding question", "Dodge question", "Run out screaming"],
+        "button functions": [answerQuestion, dodgeQuestion, Run],
+        text: "You go to a live interview. You are given items to complete in person."
     }
-]
+    {
+        name: "lose",
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+        "button functions": [restart, restart, restart],
+        text: "You fail. &#x2620;"
+    },
+    { 
+        name: "win", 
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"], 
+        "button functions": [restart, restart, restart], 
+        text: "You ace the interview! YOU WIN THE GAME! &#x1F389;" 
+    }
+];
+
+//initialize buttons
+
+
+
 
