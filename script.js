@@ -68,7 +68,7 @@ const locations = [
         "button text": ["Answer coding question", "Dodge question", "Run out screaming"],
         "button functions": [answerQuestion, dodgeQuestion, Run],
         text: "You go to a live interview. You are given items to complete in person."
-    }
+    },
     {
         name: "lose",
         "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
@@ -84,7 +84,20 @@ const locations = [
 ];
 
 //initialize buttons
+button1.onclick = goComputer;
+button2.onclick = goMeetup;
+button3.onclick = goInterview;
 
+function update(location) {
+    mockStats.style.display = "none";
+    button1.innerText = location["button text"][0];//the location object is PASSED in this function
+    button2.innerText = location["button text"][1];
+    button3.innerText = location["button text"][2];
+    button1.onclick = location["button functions"][0];
+    button2.onclick = location["button functions"][1];
+    button3.onclick = location["button functions"][2];
+    text.innerHTML = location.text;
+}
 
 
 
