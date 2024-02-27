@@ -1,7 +1,7 @@
 let xp = 0;
 let health = 100;
 let bits = 50;
-let currentWeapon = 0;
+let currentTool = 0;
 let fighting;
 let mockHealth;
 let inventory = ["tutorials"];
@@ -98,6 +98,51 @@ function update(location) {
     button3.onclick = location["button functions"][2];
     text.innerHTML = location.text;
 }
+
+function goComputer() {
+    update(locations[0]);
+}
+
+function goFreeCodeCamp() {
+    update(locations[1]);
+}
+
+function goMeetup() {
+    update (locations[2]);
+}
+
+function studyKnowledge() {
+    if (bits >= 10) {
+        bits -= 10;
+        knowledge += 10;
+        bitsText.innerText = bits;
+        knowledgeText.innerText = knowledge;
+    } else {
+        text.innerText = "You do not have enough bits to buy knowledge";
+    }
+
+ }
+
+ function buyTools() {
+    if (currentTool < tools.length -1) {
+        if (bits >=30) {
+            bits -= 30;
+            currentTool++;
+            bitsText.innerText = bits;
+            let newTool = tools[currentTool].name;
+            text.innerText = "You now have a " + newTool + ".";
+            inventory.push(newTool);
+            text.innerText += " In your inventory you have: " + inventory;
+        } else {
+            text.innerText = "You do not have enough bits to buy knowledge.";
+        }
+    } else {
+        text.innerText = "You already have the most powerful knowledge!";
+        button2.innerText = "Sell knowledge for 15 bits";
+        button2.onclick = sellTool;
+    }
+ }
+
 
 
 
