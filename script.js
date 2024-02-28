@@ -2,9 +2,20 @@ let xp = 0;
 let health = 100;
 let bits = 50;
 let currentTool = 0;
-let fighting;
+let answer;
 let mockHealth;
 let inventory = ["tutorials"];
+
+// gold = bits
+// monster = mock
+// health = knowledge;
+// buy = study;
+// weapons = tools;
+// fight = start;
+// attack = answer;
+// sell = share;
+// xp = xp;
+// nventory = inventory;
 
 const button1 = document.querySelector("#button1");//selector variable for Go to freeCodeCamp button
 const button2 = document.querySelector("#button2");
@@ -64,10 +75,10 @@ const locations = [
         text: "You go to a coding meetup. You have options for practicing skills."
     },
     {
-        name: "interview",
-        "button text": ["Answer coding question", "Dodge question", "Run out screaming"],
-        "button functions": [answerQuestion, dodgeQuestion, Run],
-        text: "You go to a live interview. You are given items to complete in person."
+        name: "start",
+        "button text": ["Answer", "Dodge question", "Run out screaming"],
+        "button functions": [answer, dodgeQuestion, Run],
+        text: "You are now ready to answer the questions."
     },
     {
         name: "lose",
@@ -142,7 +153,47 @@ function studyKnowledge() {
         button2.onclick = sellTool;
     }
  }
+function shareTools() {
+    if (inventory.length > 1) {
+        bits += 15;
+        bitsText.innerText = bits;
+        let currentTool = inventory.shift();
+        text.innerText = "You shared " + currentTool + ".";
+        text.innerText = " In your inventory you have: " + inventory;
+        } else {
+            text.innerText = "You don't have enough to share";
+        }
+    
+}
+
+function mockTest() {
+    answer = 0;
+    goAnswer();
+}
+
+function mockInterview() {
+    answer = 1;
+    goAnswer();
+}
+
+function interview() {
+    answer = 2;
+    goAnswer();
+}
+
+function start() {
+    update(locations[3]);
+    mockHealth = mock[answer].health;
+    mockStats.style.display = "block";
+    mockName.innerText = mock[answer].name;
+    mockHealthText.innerText = mockKnowledge;
+}
+//[answerQuestion, dodgeQuestion, Run]
 
 
-
+function answer() {
+    text.innerText = "The " +mock[attacking].name + " has a question.";
+    text.innerText += " You answer it with your " + tools[currentTool].name + ".";
+    
+}
 
