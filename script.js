@@ -15,7 +15,7 @@ let inventory = ["tutorials"];
 // attack = answer;
 // sell = share;
 // xp = xp;
-// nventory = inventory;
+// inventory = inventory;
 
 const button1 = document.querySelector("#button1");//selector variable for Go to freeCodeCamp button
 const button2 = document.querySelector("#button2");
@@ -166,22 +166,22 @@ function shareTools() {
     
 }
 
-function mockTest() {
+function mockTest() { //fightSlime
     answer = 0;
     goAnswer();
 }
 
-function mockInterview() {
+function mockInterview() { //fightBeast
     answer = 1;
     goAnswer();
 }
 
-function interview() {
+function interview() { //fightDragon
     answer = 2;
     goAnswer();
 }
 
-function start() {
+function start() { //goFight
     update(locations[3]);
     mockHealth = mock[answer].health;
     mockStats.style.display = "block";
@@ -191,9 +191,29 @@ function start() {
 //[answerQuestion, dodgeQuestion, Run]
 
 
-function answer() {
+function answer() { //attack
     text.innerText = "The " +mock[attacking].name + " has a question.";
     text.innerText += " You answer it with your " + tools[currentTool].name + ".";
-    
+    knowledge -= getMockAnswerValue(mocks[fighting].level);
+    if (isMockCleared()) {
+        mockKnowledge -= tools[currentTool].power + Math.floor(Math.random() * xp)
+ + 1; 
+   } else {
+    text.innerText += " You missed the question.";
+   }
+   knowledgeText.innerText = knowledge;
+   mockKnowledgeText.innerText = mockKnowledge;
+   if (knowledge <= 0) {
+    lose();
+   } else if (mockKnowledge <= 0) {
+    if (start === 2) {
+        winGame();
+    } else {
+        clearMock();
+    }
+   }
+   if (Math.random() <= .1 && inventory.length !==1) {
+    text.innerText 
+   }
 }
 
