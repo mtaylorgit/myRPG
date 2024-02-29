@@ -1,53 +1,43 @@
 let xp = 0;
-let health = 100;
+let knowledge = 100;
 let bits = 50;
-let currentTool = 0;
-let answer;
-let mockHealth;
-let inventory = ["tutorials"];
+let currentTool = 0;//instead of weapons
+let answer; //instead of fighting
+let mockHealth;//instead of monsterHealth
+let inventory = ["freeCodeCamp"];//the stick
 
-// gold = bits
-// monster = mock
-// health = knowledge;
-// buy = study;
-// weapons = tools;
-// fight = start;
-// attack = answer;
-// sell = share;
-// xp = xp;
-// inventory = inventory;
 
 const button1 = document.querySelector("#button1");//selector variable for Go to freeCodeCamp button
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
 const text = document.querySelector("#text");
 const xpText = document.querySelector("xpText");
-const healthText = document.querySelector("#healthText");
-const bitText = document.querySelector("#bitText");
+const knowledgeText = document.querySelector("#knowledgeText");
+const bitsText = document.querySelector("#bitsText");
 const mockStats = document.querySelector("#mockStats");
 const mockName = document.querySelector("#mockName");
 const mockHealthText = document.querySelector("#mockHealth");
 
-const tools = [
-    {name: "freeCodeCamp", power:5},
-    {name: "theOdinProject", power:30},
-    {name: "codingBooks", power: 50}, //like Eloquent Javascript, it's free, Google it
-    {name: "mainProject", power: 100}//You can apply your programming skills within a professional-grade framework or tools like ASP.NET MVC, Spring Boot, or React. Add user authentication.
+const tools = [ //the weapons
+    {name: 'freeCodeCamp', power:5},
+    {name: 'The Odin Project', power:30},
+    {name: 'Coding Books', power: 50}, 
+    {name: 'Big Project', power: 100}
 ];
 
-const mocks = [
+const mocks = [ //the monsters
     {
-        name: "mockTest",
+        name: "Mock Test",
         level: 2,
         health: 15
     },
     {
-        name: "mockInterview",
+        name: "Mock Interview",
         level: 8,
         health: 60
     },
     {
-        name: "interview",
+        name: "Interview",
         level: 20,
         health: 300
     }
@@ -56,15 +46,15 @@ const mocks = [
 const locations = [
     {
         name: "computer",
-        "button text": ["Go to freeCodeCamp", "Go to Coding Meetup", "Interview"],
-        "button functions": [goFreeCodeCamp, goMeetup, interview],
-        text: "You are on your computer. You see on your social media that there is a coding meetup."//this will need to be updated
+        "button text": ["freeCodeCamp", "Coding Meetup", "Interview"],
+        "button functions": [goFreeCodeCamp, goMeetup, goInterview],
+        text: "You are on your computer. You see on your social media that there is a coding meetup."
     },
-    //below, all locations should be from the one above
+   
     {
         name: "freeCodeCamp",
-        "button text": ["Study 10 knowledge (10 bits)", "Study tool (30 bits)", "Go to your computer"],
-        "button functions": [studyKnowledge, studyTools, goComputer],
+        "button text": ["Study Chapter (10 bits)", "Study Tutorial (30 bits)", "Go to your computer"],
+        "button functions": [studyKnowledge, studyTools, goComputer],//buy health, buy weapons
         text: "You go to your computer."
     },
 
@@ -77,7 +67,7 @@ const locations = [
     {
         name: "start",
         "button text": ["Answer", "Dodge question", "Run out screaming"],
-        "button functions": [answer, dodgeQuestion, Run],
+        "button functions": [answer, dodge, run],
         text: "You are now ready to answer the questions."
     },
     {
@@ -114,11 +104,11 @@ function goComputer() {
     update(locations[0]);
 }
 
-function goFreeCodeCamp() {
+function goMeetup() {
     update(locations[1]);
 }
 
-function goMeetup() {
+function goInterview() {
     update (locations[2]);
 }
 
@@ -134,7 +124,7 @@ function studyKnowledge() {
 
  }
 
- function buyTools() {
+ function studyTools() {
     if (currentTool < tools.length -1) {
         if (bits >=30) {
             bits -= 30;
@@ -213,7 +203,48 @@ function answer() { //attack
     }
    }
    if (Math.random() <= .1 && inventory.length !==1) {
-    text.innerText 
+    text.innerText += " Your internet connection to " + inventory.pop() + " breaks."
+    currentTool--;
    }
 }
 
+function getMockAnswerValue(level) {
+    const cleared = (level * 5) - (Math.floor(Math.random() * xp));
+    console.log(cleared);
+    return cleared > 0 ? cleared : 0;
+}
+
+function isMockCleared() {
+    return Math.random() > .2 || health < 20;
+}
+
+function dodge() {
+    text.innerText = "You dodge the question from the " + mock[start].name;
+}
+
+function defeatMock() {
+    bits += Math.floor(mock[start].level * 6.7);
+    bitsText.innerText = bits;
+    xpText.innerText = xp;
+    update(locations[4]);
+}
+
+function lose() {
+    update (locations[4]);
+}
+
+function winGame() {
+    update(locations[5]);
+}
+
+function restart() {
+    xp = 0;
+    knowledge = 100;
+    bits = 50;
+    currentTool = 0;
+    inventory = ["tutorials"];
+    bitsText.innerText = bits;
+    knowledgeText.innerText = knowledge;
+    xpText.innerText = xp;
+    goComputer();
+  }
