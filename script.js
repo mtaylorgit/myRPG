@@ -1,5 +1,5 @@
 let xp = 0;
-let knowledge = 100;
+let knowledge = 100;//health
 let bits = 50;
 let currentTool = 0;//instead of weapons
 let answer; //instead of fighting
@@ -46,8 +46,8 @@ const mocks = [ //the monsters
 const locations = [
     {
         name: "computer",
-        "button text": ["freeCodeCamp", "Coding Meetup", "Interview"],
-        "button functions": [goFreeCodeCamp, goMeetup, goInterview],
+        "button text": ["Go to your Computer", "Go to Coding Meetup", "Go to Real Interview"],
+        "button functions": [goComputer, goMeetup, goInterview],
         text: "You are on your computer. You see on your social media that there is a coding meetup."
     },
    
@@ -67,7 +67,7 @@ const locations = [
     {
         name: "start",
         "button text": ["Answer", "Dodge question", "Run out screaming"],
-        "button functions": [answer, dodge, run],
+        "button functions": [goAnswer, dodge, goComputer],
         text: "You are now ready to answer the questions."
     },
     {
@@ -139,8 +139,8 @@ function studyKnowledge() {
         }
     } else {
         text.innerText = "You already have the most powerful knowledge!";
-        button2.innerText = "Sell knowledge for 15 bits";
-        button2.onclick = sellTool;
+        button2.innerText = "Share knowledge for 15 bits";
+        button2.onclick = shareTools;
     }
  }
 function shareTools() {
@@ -173,29 +173,29 @@ function interview() { //fightDragon
 
 function start() { //goFight
     update(locations[3]);
-    mockHealth = mock[answer].health;
+    mockHealth = mocks[answer].health;
     mockStats.style.display = "block";
-    mockName.innerText = mock[answer].name;
-    mockHealthText.innerText = mockKnowledge;
+    mockName.innerText = mocks[answer].name;
+    mockHealthText.innerText = knowledge;
 }
 //[answerQuestion, dodgeQuestion, Run]
 
 
-function answer() { //attack
-    text.innerText = "The " +mock[attacking].name + " has a question.";
+function goAnswer() { //attack
+    text.innerText = "The " +mocks[attacking].name + " has a question.";
     text.innerText += " You answer it with your " + tools[currentTool].name + ".";
     knowledge -= getMockAnswerValue(mocks[fighting].level);
     if (isMockCleared()) {
-        mockKnowledge -= tools[currentTool].power + Math.floor(Math.random() * xp)
+        knowledge -= tools[currentTool].power + Math.floor(Math.random() * xp)
  + 1; 
    } else {
     text.innerText += " You missed the question.";
    }
    knowledgeText.innerText = knowledge;
-   mockKnowledgeText.innerText = mockKnowledge;
+   knowledgeText.innerText = knowledge;
    if (knowledge <= 0) {
     lose();
-   } else if (mockKnowledge <= 0) {
+   } else if (knowledge <= 0) {
     if (start === 2) {
         winGame();
     } else {
@@ -219,11 +219,11 @@ function isMockCleared() {
 }
 
 function dodge() {
-    text.innerText = "You dodge the question from the " + mock[start].name;
+    text.innerText = "You dodge the question from the " + mocks[start].name;
 }
 
 function defeatMock() {
-    bits += Math.floor(mock[start].level * 6.7);
+    bits += Math.floor(mocks[start].level * 6.7);
     bitsText.innerText = bits;
     xpText.innerText = xp;
     update(locations[4]);
