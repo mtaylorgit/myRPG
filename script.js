@@ -1,6 +1,6 @@
-let xp = 0;
+let xp = 0;//same xp
 let knowledge = 100;//health
-let bits = 50;
+let bits = 50; //gold
 let currentTool = 0;//instead of weapons
 let answer; //instead of fighting
 let mockHealth;//instead of monsterHealth
