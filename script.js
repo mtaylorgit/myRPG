@@ -182,9 +182,9 @@ function start() { //goFight
 
 
 function goAnswer() { //attack
-    text.innerText = "The " +mocks[attacking].name + " has a question.";
+    text.innerText = "The " +mocks[answer].name + " has a question.";
     text.innerText += " You answer it with your " + tools[currentTool].name + ".";
-    knowledge -= getMockAnswerValue(mocks[fighting].level);
+    knowledge -= getMockAnswerValue(mocks[start].level);
     if (isMockCleared()) {
         knowledge -= tools[currentTool].power + Math.floor(Math.random() * xp)
  + 1; 
@@ -192,7 +192,7 @@ function goAnswer() { //attack
     text.innerText += " You missed the question.";
    }
    knowledgeText.innerText = knowledge;
-   knowledgeText.innerText = knowledge;
+
    if (knowledge <= 0) {
     lose();
    } else if (knowledge <= 0) {
