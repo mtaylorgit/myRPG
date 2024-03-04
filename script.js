@@ -85,8 +85,8 @@ const locations = [
 ];
 
 //initialize buttons
-button1.onclick = goComputer;
-button2.onclick = goMeetup;
+button1.onclick = goMeetup;
+button2.onclick = goComputer;
 button3.onclick = goInterview;
 
 function update(location) {
@@ -109,7 +109,7 @@ function goMeetup() {
 }
 
 function goInterview() {
-    update (locations[2]);
+    update (locations[3]);
 }
 
 function studyKnowledge() {
